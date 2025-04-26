@@ -1,10 +1,10 @@
 FROM alpine
 
-ARG PHP_VIRTUAL_BOX_RELEASE=7.1-1
+ARG PHP_VIRTUAL_BOX_RELEASE=develop
 
 RUN apk update && apk add --no-cache bash nginx php83-fpm php83-common php83-json php83-soap php83-simplexml php83-session php83-cli \
     && apk add --no-cache --virtual build-dependencies wget unzip \
-    && wget --no-check-certificate https://github.com/phpvirtualbox/phpvirtualbox/archive/refs/tags/${PHP_VIRTUAL_BOX_RELEASE}.zip -O phpvirtualbox.zip \
+    && wget --no-check-certificate https://github.com/phpvirtualbox/phpvirtualbox/archive/refs/heads/${PHP_VIRTUAL_BOX_RELEASE}.zip -O phpvirtualbox.zip \
     && unzip phpvirtualbox.zip -d phpvirtualbox \
     && mkdir -p /var/www \
     && mv -v phpvirtualbox/*/* /var/www/ \
